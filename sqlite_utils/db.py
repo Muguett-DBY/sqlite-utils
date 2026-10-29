@@ -3794,9 +3794,9 @@ class Table(Queryable):
             fts_schema = self.db[f"{self.name}_fts"].schema
             if fts_schema != create_fts_sql:
                 should_recreate = True
-            trigger_suffixes = ("_ai", "_ad", "_au")
+            trigger_suffixes = ["_ai", "_ad", "_au"]
             if fts_version.upper() == "FTS4":
-                trigger_suffixes += ("_bu",)
+                trigger_suffixes.append("_bu")
             expected_triggers = {self.name + suffix for suffix in trigger_suffixes}
             known_triggers = {
                 self.name + suffix for suffix in ("_ai", "_ad", "_au", "_bu")
